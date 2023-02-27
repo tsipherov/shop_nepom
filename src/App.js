@@ -1,15 +1,18 @@
-import logo from "./logo.svg";
-import "./App.css";
 import { useEffect, useState } from "react";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import Shop from "./components/Shop/Shop";
+import { API_KEY, API_URL } from "./config";
 
 function App() {
+  console.log("API_KEY >>> ", API_KEY);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://fortniteapi.io/v2/shop?lang=en", {
+    fetch(API_URL, {
       method: "GET",
       headers: {
-        Authorization: "dfbc3e00-cd7be9c4-38dea699-a49c9ade",
+        Authorization: API_KEY,
       },
     })
       .then((res) => res.json())
@@ -33,10 +36,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <ul>{shopGoods}</ul>
-      </header>
+      <Header />
+      <ul>{shopGoods}</ul>
+      <Shop />
+      <Footer />
     </div>
   );
 }
