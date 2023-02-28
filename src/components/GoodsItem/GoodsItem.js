@@ -1,6 +1,6 @@
 import React from "react";
 
-const GoodsImem = ({ item }) => {
+const GoodsImem = ({ item, addToBasket }) => {
   const {
     mainId,
     displayName,
@@ -22,13 +22,12 @@ const GoodsImem = ({ item }) => {
       <div className="card-action">
         <button
           className="btn"
-          onClick={
-            () => {}
-            //   addToBasket({
-            //     mainId,
-            //     displayName,
-            //     regularPrice,
-            //   })
+          onClick={() =>
+            addToBasket({
+              mainId,
+              displayName,
+              regularPrice,
+            })
           }
         >
           Купить
