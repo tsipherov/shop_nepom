@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { API_KEY, API_URL } from "../../config";
+import Alert from "../Alert/Alert";
 import BasketList from "../BasketList/BasketList";
 import Cart from "../Cart/Cart";
 import GoodsList from "../GoodsList/GoodsList";
@@ -11,6 +12,7 @@ const Shop = () => {
   const [order, setOrder] = useState([]);
   const [isBasketShow, setIsBasketShow] = useState(false);
   const [total, setTotal] = useState(0);
+  const [alertName, setAlertName] = useState("");
 
   useEffect(() => {
     fetch(API_URL, {
@@ -88,9 +90,13 @@ const Shop = () => {
     } else {
       setOrder((order) => [...order, { ...product, quantity: 1 }]);
     }
+    setAlertName(product.displayName);
   };
 
-  // console.log("order >>> ", order);
+  const closeAlert = () => {
+    setAlertName("");
+  };
+
   return (
     <main className="container content">
       <Cart quantity={order.length} handleBasketShow={handleBasketShow} />
@@ -109,7 +115,7 @@ const Shop = () => {
           decQuantity={decQuantity}
         />
       )}
-      {/* {alertName && <Alert name={alertName} closeAlert={closeAlert} />} */}
+      {alertName && <Alert name={alertName} closeAlert={closeAlert} />}
     </main>
   );
 };
