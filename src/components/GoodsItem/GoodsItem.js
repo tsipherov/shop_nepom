@@ -1,14 +1,16 @@
-import React from "react";
+import { useContext } from "react";
+import { ShopContext } from "../../context";
 
-const GoodsImem = ({ item, addToBasket }) => {
+const GoodsImem = ({ product }) => {
   const {
     mainId,
     displayName,
-    firstReleaseDate,
-    price: { regularPrice, finalPrice },
-    displayAssets: [{ background, full_background }],
+    price: { regularPrice },
+    displayAssets: [{ full_background }],
     displayDescription,
-  } = item;
+  } = product;
+
+  const { addToBasket } = useContext(ShopContext);
 
   return (
     <div className="card">

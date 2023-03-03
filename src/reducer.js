@@ -1,5 +1,23 @@
 export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case "SET_DATA":
+      return {
+        ...state,
+        data: payload,
+      };
+
+    case "SET_TOTAL":
+      return {
+        ...state,
+        total: payload,
+      };
+
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: payload,
+      };
+
     case "CLOSE_ALERT":
       return {
         ...state,
@@ -35,7 +53,6 @@ export const reducer = (state, { type, payload }) => {
 
     case "REMOVE_FROM_BASKET":
       const newOrder = state.order.filter((item) => item.mainId !== payload.id);
-      // setOrder(newOrder);
       return {
         ...state,
         order: newOrder,

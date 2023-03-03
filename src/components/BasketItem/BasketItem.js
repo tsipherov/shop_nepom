@@ -1,16 +1,10 @@
-// import React, { useContext } from "react";
-// import { ShopContext } from "../../context";
+import React, { useContext } from "react";
+import { ShopContext } from "../../context";
 
-const BasketItem = ({
-  removeFromBasket,
-  incQuantity,
-  decQuantity,
-  mainId,
-  displayName,
-  quantity,
-  regularPrice,
-}) => {
-  // const { total, loading } = useContext(ShopContext);
+const BasketItem = ({ mainId, displayName, quantity, regularPrice }) => {
+  const { removeFromBasket, incQuantity, decQuantity } =
+    useContext(ShopContext);
+
   return (
     <li className="collection-item">
       {displayName}{" "}
@@ -27,7 +21,7 @@ const BasketItem = ({
       >
         add
       </i>{" "}
-      = {regularPrice * quantity} руб.
+      = {regularPrice * quantity} грн.
       <span
         className="secondary-content"
         onClick={() => removeFromBasket(mainId)}

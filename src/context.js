@@ -14,6 +14,18 @@ export const ShopContext = createContext();
 export const ShopProvider = ({ children }) => {
   const [value, dispatch] = useReducer(reducer, initialValue);
 
+  value.setData = (data) => {
+    dispatch({ type: "SET_DATA", payload: data });
+  };
+
+  value.setTotal = (total) => {
+    dispatch({ type: "SET_TOTAL", payload: total });
+  };
+
+  value.setLoading = (isLoading) => {
+    dispatch({ type: "SET_LOADING", payload: isLoading });
+  };
+
   value.closeAlert = () => {
     dispatch({ type: "CLOSE_ALERT" });
   };
